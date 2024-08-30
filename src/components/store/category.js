@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import {
-  ProductsContainer,
   ProductBox,
   ProductImage,
   ProductContent,
@@ -89,16 +88,21 @@ const SectionTitle = styled.h2`
   }
 `;
 
-// const ProductsContainer = styled.div`
-//   display: grid;
-//   gap: 20px;
-//   grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+const ProductsContainer = styled.div`
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  cursor: pointer;
+  :hover {
+    transform: scale(1.01);
+    transition: transform 0.5s;
+  }
 
-//   @media (max-width: 768px) {
-//     grid-template-columns: repeat(2, 1fr);
-//     gap: 10px;
-//   }
-// `;
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+`;
 
 // const ProductBox = styled.div`
 //   width: 340px;

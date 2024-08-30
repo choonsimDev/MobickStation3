@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import Link from "next/link";
 // import ModalReady from "@/components/modal/ModalReady";
 
 const MainContainer = styled.div`
@@ -57,7 +58,13 @@ const MoreButton = styled.button`
 export const ProductsContainer = styled.div`
   display: flex;
   gap: 20px;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  grid-template-columns: (5, 1fr);
+
+  cursor: pointer;
+  :hover {
+    transform: scale(1.01);
+    transition: transform 0.5s;
+  }
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -113,7 +120,6 @@ export const ProductTitle = styled.h3`
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 10px;
-
   @media (max-width: 768px) {
     font-size: 14px;
   }
@@ -253,7 +259,9 @@ function ProductSection({ title, link, products }) {
     <Section>
       <SectionHeader>
         <SectionTitle>{title}</SectionTitle>
-        <MoreButton href={link}>+더보기</MoreButton>
+        <Link href="/store/category">
+          <MoreButton>+더보기</MoreButton>
+        </Link>
       </SectionHeader>
       <ProductsContainer>
         {products.map((product, index) => (

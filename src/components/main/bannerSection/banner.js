@@ -24,6 +24,7 @@ const Slide = styled.div`
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  border-radius: 20px;
 `;
 
 export default function Banner() {

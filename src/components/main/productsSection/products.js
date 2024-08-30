@@ -54,9 +54,10 @@ const MoreButton = styled.button`
   }
 `;
 
-const ProductsContainer = styled.div`
+export const ProductsContainer = styled.div`
   display: flex;
   gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -67,7 +68,7 @@ const ProductsContainer = styled.div`
   }
 `;
 
-const ProductBox = styled.div`
+export const ProductBox = styled.div`
   width: 340px;
   height: 416px;
   border-radius: 8px;
@@ -83,7 +84,7 @@ const ProductBox = styled.div`
   }
 `;
 
-const ProductImage = styled.img`
+export const ProductImage = styled.img`
   width: 340px;
   height: 240px;
   object-fit: cover;
@@ -95,7 +96,7 @@ const ProductImage = styled.img`
   }
 `;
 
-const ProductContent = styled.div`
+export const ProductContent = styled.div`
   padding: 10px;
   flex: 1;
   display: flex;
@@ -108,7 +109,7 @@ const ProductContent = styled.div`
   }
 `;
 
-const ProductTitle = styled.h3`
+export const ProductTitle = styled.h3`
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 10px;
@@ -118,7 +119,7 @@ const ProductTitle = styled.h3`
   }
 `;
 
-const ProductDescription = styled.p`
+export const ProductDescription = styled.p`
   font-size: 20px;
   color: #666;
   margin-bottom: 10px;
@@ -128,7 +129,7 @@ const ProductDescription = styled.p`
   }
 `;
 
-const ProductPrice = styled.p`
+export const ProductPrice = styled.p`
   font-size: 24px;
   font-weight: bold;
   color: #333;
@@ -140,11 +141,11 @@ const ProductPrice = styled.p`
     font-size: 12px;
   }
 `;
-const PriceNumber = styled.span`
+export const PriceNumber = styled.span`
   color: #0078ff;
 `;
 
-const PriceUnit = styled.span`
+export const PriceUnit = styled.span`
   color: black;
 `;
 

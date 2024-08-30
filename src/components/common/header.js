@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import React, { useState } from "react";
 import AuthButtons from "../auth/authButton";
+import Link from "next/link";
+
 // import ModalReady from "../modal/ModalReady";
-// import Link from "next/link";
 // import Image from "next/image";
 
 const StyledHeader = styled.div`
@@ -173,20 +174,23 @@ export default function LogoAndSearch() {
   return (
     <StyledHeader>
       <StyledLogoBox>
-        <StyledLogo>
-          <LogoImage
-            src="/images/logos/logo_mobickstation_header.png"
-            alt="Logo"
-          />
-        </StyledLogo>
+        <Link href="/" passHref>
+          <StyledLogo>
+            <LogoImage
+              src="/images/logos/logo_mobickstation_header.png"
+              alt="Logo"
+            />
+          </StyledLogo>
+        </Link>
         <Divider>|</Divider>
 
         <div>
-          <StyledLinkFirst>쇼핑몰</StyledLinkFirst>
+          <StyledLinkFirst href="/">쇼핑몰</StyledLinkFirst>
           {/* <StyledLinkFirst onClick={showModal}>쇼핑몰</StyledLinkFirst> */}
           <StyledLinkFirst href="/community/mobicker">커뮤니티</StyledLinkFirst>
         </div>
       </StyledLogoBox>
+
       {/* {isModalVisible && <ModalReady onClose={hideModal} />} */}
       <SearchLoginBox>
         <SearchBar>

@@ -57,6 +57,14 @@ const MoreButton = styled.button`
 const ProductsContainer = styled.div`
   display: flex;
   gap: 20px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Create two columns */
+    gap: 10px; /* Space between the items */
+  }
 `;
 
 const ProductBox = styled.div`

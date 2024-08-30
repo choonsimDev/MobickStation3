@@ -6,7 +6,7 @@ import AuthButtons from "../auth/authButton";
 // import Image from "next/image";
 
 const StyledHeader = styled.div`
-  max-width: 1600px;
+  width: 1600px;
   padding: 20px 60px;
   display: flex;
   margin: 0 auto;
@@ -14,8 +14,10 @@ const StyledHeader = styled.div`
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #e5e5e5;
+
   @media (max-width: 768px) {
-    padding: 20px 20px;
+    width: 100%;
+    padding: 10px 0px 10px 0px;
   }
 `;
 
@@ -39,6 +41,10 @@ const StyledLogoBox = styled.div`
     display: flex;
     flex-direction: row;
     gap: 20px;
+  }
+
+  @media (max-width: 768px) {
+    padding-left: 10px;
   }
 `;
 
@@ -89,6 +95,7 @@ const StyledLinkFirst = styled.a`
     // div에 마우스를 올렸을 때 :after 스타일 변경
     transform: scaleX(1); // 호버 시 scaleX를 1로 설정하여 전체 너비로 확장
   }
+
   @media (max-width: 768px) {
     font-size: 16px;
     display: none;
@@ -102,6 +109,11 @@ const SearchLoginBox = styled.div`
   justify-content: flex-end;
   align-items: center;
   gap: 20px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 0 20px;
+  }
 `;
 
 const SearchBar = styled.div`

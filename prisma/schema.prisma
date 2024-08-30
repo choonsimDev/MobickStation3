@@ -1,0 +1,142 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  content   String   @db.Text
+  nickname  String
+  password  String
+  createdAt DateTime @default(now())
+  postId    Int
+}
+
+model CommentAnonymous {
+  id        Int      @id @default(autoincrement())
+  content   String   @db.Text
+  nickname  String
+  password  String
+  createdAt DateTime @default(now())
+  postId    Int
+}
+
+model User {
+  id        Int       @id @default(autoincrement())
+  email     String    @unique
+  phone     Int?      @unique
+  username  String?
+  password  String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime
+  deletedAt DateTime?
+}
+
+model dbAdArea {
+  id  Int    @id @default(autoincrement())
+  src String
+  alt String
+}
+
+model dbAnonymousPost {
+  id        Int      @id @default(autoincrement())
+  title     String
+  nickname  String
+  password  String
+  content   String   @db.Text
+  thumb     Int      @default(0)
+  createdAt DateTime @default(now())
+  views     Int      @default(0)
+}
+
+model dbBannerCategory {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+}
+
+model dbBannerItem {
+  id                 Int    @id @default(autoincrement())
+  name               String
+  bannerDBCategoryId Int
+}
+
+model dbCommunityPost {
+  id        Int      @id @default(autoincrement())
+  title     String
+  nickname  String
+  password  String
+  content   String   @db.Text
+  thumb     Int      @default(0)
+  createdAt DateTime @default(now())
+  views     Int      @default(0)
+}
+
+model dbCustomerInfo {
+  id            Int     @id @default(autoincrement())
+  name          String
+  phone         String
+  email         String
+  recipient     String
+  contact1      String
+  contact2      String
+  address       String
+  deliveryNote  String?
+  paymentMethod String?
+  orderId       Int     @unique
+  password      String
+
+  @@index([orderId])
+}
+
+model dbNotice {
+  id        Int      @id @default(autoincrement())
+  title     String
+  nickname  String
+  content   String   @db.Text
+  createdAt DateTime @default(now())
+  views     Int      @default(0)
+}
+
+model dbOrder {
+  id        Int      @id @default(autoincrement())
+  orderId   String   @unique
+  orderName String
+  status    String
+  total     String
+  createdAt DateTime @default(now())
+  productId Int
+
+  @@index([productId])
+}
+
+model dbStoreCategory {
+  id   Int    @id @default(autoincrement())
+  name String
+}
+
+model dbStoreName {
+  id   Int    @id @default(autoincrement())
+  name String
+}
+
+model dbStoreProduct {
+  id                Int     @id @default(autoincrement())
+  name              String
+  price             String
+  imageUrl          String?
+  description       String?
+  categoryId        Int
+  storeId           Int
+  views             Int     @default(0)
+  discountPrice     String?
+  detailDescription String? @db.Text
+  inventory         String?
+
+  @@index([categoryId])
+  @@index([storeId])
+}

@@ -87,6 +87,7 @@ const ProductImage = styled.img`
   width: 340px;
   height: 240px;
   object-fit: cover;
+  background-color: #f5f5f5;
 
   @media (max-width: 768px) {
     width: 100%;

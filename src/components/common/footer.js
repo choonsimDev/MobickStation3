@@ -14,6 +14,7 @@ const FooterTop = styled.div`
   border-bottom: 1px solid #ccc;
   padding-bottom: 20px;
   margin-bottom: 20px;
+
   @media (max-width: 768px) {
     flex-direction: column;
   }
@@ -43,6 +44,7 @@ const InfoTextTop = styled.div`
   font-size: 18px;
   color: #737373;
   line-height: 1.6;
+
   @media (max-width: 768px) {
     text-align: center;
     font-size: 14px;
@@ -54,6 +56,10 @@ const InfoTextBottom = styled.div`
   font-size: 18px;
   color: #737373;
   line-height: 1.6;
+
+  @media (max-width: 1100px) {
+    display: none;
+  }
 
   @media (max-width: 768px) {
     display: none;
@@ -73,6 +79,12 @@ const FooterRightBox = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 1100px) {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
   @media (max-width: 768px) {
     width: 100%;
     justify-content: center;
@@ -105,6 +117,10 @@ const ContactTitle = styled.h4`
 const SocialIconsBox = styled.div`
   display: flex;
   gap: 10px;
+
+  @media (max-width: 1100px) {
+    display: none;
+  }
 
   @media (max-width: 768px) {
     display: none;

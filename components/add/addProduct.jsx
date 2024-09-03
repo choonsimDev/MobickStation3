@@ -15,7 +15,7 @@ export default function AddProduct({ categories = [], stores = [] }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const res = await fetch("/api/add", {
+    const res = await fetch("/api/testpost", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -23,15 +23,25 @@ export default function AddProduct({ categories = [], stores = [] }) {
       body: JSON.stringify({
         name,
         description,
-        price: parseFloat(price) || 0, // 숫자로 변환, 실패시 0
-        mileage: parseFloat(mileage) || 0, // 숫자로 변환, 실패시 0
-        stock: parseInt(stock) || 0, // 숫자로 변환, 실패시 0
+        price,
+        mileage,
+        stock,
         imageUrl,
         categoryName,
         storeName,
       }),
     });
-
+    console.log({
+      name,
+      description,
+      price,
+      mileage,
+      stock,
+      imageUrl,
+      categoryName,
+      storeName,
+    });
+    console.log(res);
     if (res.ok) {
       alert("Product added successfully!");
     } else {

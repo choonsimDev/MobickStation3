@@ -37,12 +37,6 @@ model User {
   deletedAt DateTime?
 }
 
-model dbAdArea {
-  id  Int    @id @default(autoincrement())
-  src String
-  alt String
-}
-
 model dbAnonymousPost {
   id        Int      @id @default(autoincrement())
   title     String
@@ -52,17 +46,6 @@ model dbAnonymousPost {
   thumb     Int      @default(0)
   createdAt DateTime @default(now())
   views     Int      @default(0)
-}
-
-model dbBannerCategory {
-  id   Int    @id @default(autoincrement())
-  name String @unique
-}
-
-model dbBannerItem {
-  id                 Int    @id @default(autoincrement())
-  name               String
-  bannerDBCategoryId Int
 }
 
 model dbCommunityPost {
@@ -76,23 +59,6 @@ model dbCommunityPost {
   views     Int      @default(0)
 }
 
-model dbCustomerInfo {
-  id            Int     @id @default(autoincrement())
-  name          String
-  phone         String
-  email         String
-  recipient     String
-  contact1      String
-  contact2      String
-  address       String
-  deliveryNote  String?
-  paymentMethod String?
-  orderId       Int     @unique
-  password      String
-
-  @@index([orderId])
-}
-
 model dbNotice {
   id        Int      @id @default(autoincrement())
   title     String
@@ -102,41 +68,39 @@ model dbNotice {
   views     Int      @default(0)
 }
 
-model dbOrder {
-  id        Int      @id @default(autoincrement())
-  orderId   String   @unique
-  orderName String
-  status    String
-  total     String
-  createdAt DateTime @default(now())
-  productId Int
+// productDB
 
-  @@index([productId])
+model Product {
+  id           Int      @id @default(autoincrement())
+  name         String
+  description  String
+  price        Float
+  mileage      Float
+  stock        Int
+  imageUrl     String
+  categoryName String
+  storeName    String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  views        Int      @default(0)
+  category     Category @relation(fields: [categoryName], references: [name])
+  store        Store    @relation(fields: [storeName], references: [name])
+
+  @@index([categoryName])
+  @@index([storeName])
 }
 
-model dbStoreCategory {
-  id   Int    @id @default(autoincrement())
-  name String
+model Category {
+  id          Int      @id @default(autoincrement())
+  name        String   @unique
+  description String
+  products    Product[]
 }
 
-model dbStoreName {
-  id   Int    @id @default(autoincrement())
-  name String
-}
-
-model dbStoreProduct {
-  id                Int     @id @default(autoincrement())
-  name              String
-  price             String
-  imageUrl          String?
-  description       String?
-  categoryId        Int
-  storeId           Int
-  views             Int     @default(0)
-  discountPrice     String?
-  detailDescription String? @db.Text
-  inventory         String?
-
-  @@index([categoryId])
-  @@index([storeId])
+model Store {
+  id          Int      @id @default(autoincrement())
+  name        String   @unique
+  description String
+  contactInfo String
+  products    Product[]
 }

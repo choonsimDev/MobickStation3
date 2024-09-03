@@ -76,7 +76,7 @@ export const ProductsContainer = styled.div`
 `;
 
 export const ProductBox = styled.div`
-  width: 340px;
+  width: 300px;
   height: 416px;
   border-radius: 8px;
   overflow: hidden;
@@ -92,7 +92,7 @@ export const ProductBox = styled.div`
 `;
 
 export const ProductImage = styled.img`
-  width: 340px;
+  width: 300px;
   height: 240px;
   object-fit: cover;
   background-color: #f5f5f5;

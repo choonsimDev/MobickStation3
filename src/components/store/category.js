@@ -91,7 +91,7 @@ const SectionTitle = styled.h2`
 const ProductsContainer = styled.div`
   display: grid;
   gap: 20px;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   cursor: pointer;
   :hover {
     transform: scale(1.01);

@@ -285,23 +285,25 @@ function ProductSection({ title, link, products = [] }) {
   );
 }
 
-export default function MainPage({ hamsterProducts }) {
+export default async function MainPage() {
+  const hamsterData = await hamsterProducts();
+  console.log("hamsterData============", hamsterData);
   return (
     <MainContainer>
       <ProductSection
         title="인기상품"
         link="/popular"
-        products={hamsterProducts}
+        products={hamsterData}
       />
       <ProductSection
         title="종이지갑 상품"
         link="/wallet"
-        products={hamsterProducts}
+        products={hamsterData}
       />
       <ProductSection
         title="굿즈 상품"
         link="/goods"
-        products={hamsterProducts}
+        products={hamsterData}
       />
     </MainContainer>
   );

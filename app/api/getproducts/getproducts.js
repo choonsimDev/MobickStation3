@@ -18,24 +18,25 @@ export const hamsterProducts = async (req) => {
   const products = await prisma.product.findMany({
     where: {
       category: {
-        name: "Hamster",
+        name: "햄스터",
       },
     },
-    select: {
-      id: true,
-      name: true,
-      description: true,
-      price: true,
-      mileage: true,
-      stock: true,
-      imageUrl: true,
-      category: true,
-      store: true,
-    },
-    include: {
-      category: true,
-      store: true,
-    },
+    // select: {
+    //   id: true,
+    //   name: true,
+    //   description: true,
+    //   price: true,
+    //   mileage: true,
+    //   stock: true,
+    //   imageUrl: true,
+    //   category: true,
+    //   store: true,
+    // },
+    // include: {
+    //   category: true,
+    //   store: true,
+    // },
   });
-  return new Response(JSON.stringify(products), { status: 200 });
+  console.log(products);
+  return products;
 };

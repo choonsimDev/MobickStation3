@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Link from "next/link";
 // import ModalReady from "@/components/modal/ModalReady";
+import { hamsterProducts } from "@/app/api/getproducts/getproducts";
 
 const MainContainer = styled.div`
   width: 1600px;
@@ -254,12 +255,12 @@ const goodsProducts = [
   },
 ];
 
-function ProductSection({ title, link, products }) {
+function ProductSection({ title, link, products = [] }) {
   return (
     <Section>
       <SectionHeader>
         <SectionTitle>{title}</SectionTitle>
-        <Link href="/store/category">
+        <Link href={link}>
           <MoreButton>+더보기</MoreButton>
         </Link>
       </SectionHeader>
@@ -284,23 +285,23 @@ function ProductSection({ title, link, products }) {
   );
 }
 
-export default function MainPage() {
+export default function MainPage({ hamsterProducts }) {
   return (
     <MainContainer>
       <ProductSection
         title="인기상품"
         link="/popular"
-        products={popularProducts}
+        products={hamsterProducts}
       />
       <ProductSection
         title="종이지갑 상품"
         link="/wallet"
-        products={walletProducts}
+        products={hamsterProducts}
       />
       <ProductSection
         title="굿즈 상품"
         link="/goods"
-        products={goodsProducts}
+        products={hamsterProducts}
       />
     </MainContainer>
   );

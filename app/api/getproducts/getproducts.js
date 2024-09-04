@@ -21,6 +21,17 @@ export const hamsterProducts = async (req) => {
         name: "Hamster",
       },
     },
+    select: {
+      id: true,
+      name: true,
+      description: true,
+      price: true,
+      mileage: true,
+      stock: true,
+      imageUrl: true,
+      category: true,
+      store: true,
+    },
     include: {
       category: true,
       store: true,

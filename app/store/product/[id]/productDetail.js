@@ -1,8 +1,10 @@
 // app/store/product/[id]/ProductDetail.js
 
 "use client"; // 클라이언트 컴포넌트로 지정
-
+import Header from "@/components/common/header";
+import Footer from "@/components/common/footer";
 import styled from "styled-components";
+import { SessionProvider } from "next-auth/react";
 
 // 스타일드 컴포넌트
 const ProductDetailContainer = styled.div`
@@ -40,18 +42,22 @@ const ProductDescription = styled.p`
 
 export default function ProductDetail({ product }) {
   return (
-    <ProductDetailContainer>
-      <div style={{ display: "flex" }}>
-        <ProductImage src={product.imageUrl} alt={product.name} />
-        <ProductContent>
-          <ProductTitle>{product.name}</ProductTitle>
-          <ProductPrice>{product.price} 원</ProductPrice>
-          <ProductDescription>{product.description}</ProductDescription>
-          <p>재고: {product.stock} 개</p>
-          <p>카테고리: {product.categoryName}</p>
-          <p>매장: {product.storeName}</p>
-        </ProductContent>
-      </div>
-    </ProductDetailContainer>
+    <SessionProvider>
+      <Header />
+      <ProductDetailContainer>
+        <div style={{ display: "flex" }}>
+          <ProductImage src={product.imageUrl} alt={product.name} />
+          <ProductContent>
+            <ProductTitle>{product.name}</ProductTitle>
+            <ProductPrice>{product.price} 원</ProductPrice>
+            <ProductDescription>{product.description}</ProductDescription>
+            <p>재고: {product.stock} 개</p>
+            <p>카테고리: {product.categoryName}</p>
+            <p>매장: {product.storeName}</p>
+          </ProductContent>
+        </div>
+      </ProductDetailContainer>
+      <Footer />
+    </SessionProvider>
   );
 }

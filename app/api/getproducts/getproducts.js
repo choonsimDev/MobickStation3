@@ -66,3 +66,32 @@ export const dogProducts = async (req) => {
   console.log(products);
   return products;
 };
+
+// 개별 상품 불러오기
+
+export async function getProduct(id) {
+  const product = await prisma.product.findUnique({
+    where: {
+      id: parseInt(id, 10), // req.params.id 대신 함수 인자 id 사용
+    },
+    include: {
+      category: true,
+      store: true,
+    },
+  });
+
+  if (!product) {
+    throw new Error(`Product with id ${id} not found`);
+  }
+
+  return {
+    id: product.id,
+    name: product.name,
+    price: product.price,
+    imageUrl: product.imageUrl,
+    description: product.description,
+    stock: product.stock,
+    categoryName: product.category.name,
+    storeName: product.store.name,
+  };
+}

@@ -1,3 +1,5 @@
+// 상품등록 테스트 페이지 API
+
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
@@ -25,7 +27,16 @@ export default async function handler(req, res) {
     categoryName,
     storeName,
   } = await req.body;
-  console.log({ name, description, price, mileage, stock, imageUrl, categoryName, storeName });
+  console.log({
+    name,
+    description,
+    price,
+    mileage,
+    stock,
+    imageUrl,
+    categoryName,
+    storeName,
+  });
   try {
     const product = await prisma.product.create({
       data: {
@@ -49,7 +60,6 @@ export default async function handler(req, res) {
     });
 
     return new Response(JSON.stringify(product), { status: 201 });
-
   } catch (error) {
     console.error("Failed to add product:", error);
     return new Response(JSON.stringify({ error: "Failed to add product" }), {

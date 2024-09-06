@@ -163,18 +163,10 @@ const StyledInput = styled.input`
 `;
 
 export default function LogoAndSearch() {
-  //   const [isModalVisible, setIsModalVisible] = useState(false);
-  //   const showModal = () => {
-  //     setIsModalVisible(true);
-  //   };
-  //   const hideModal = () => {
-  //     setIsModalVisible(false);
-  //   };
-
   return (
     <StyledHeader>
       <StyledLogoBox>
-        <Link href="/" passHref>
+        <Link href="/">
           <StyledLogo>
             <LogoImage
               src="/images/logos/logo_mobickstation_header.png"
@@ -186,12 +178,9 @@ export default function LogoAndSearch() {
 
         <div>
           <StyledLinkFirst href="/">쇼핑몰</StyledLinkFirst>
-          {/* <StyledLinkFirst onClick={showModal}>쇼핑몰</StyledLinkFirst> */}
           <StyledLinkFirst href="/community/mobicker">커뮤니티</StyledLinkFirst>
         </div>
       </StyledLogoBox>
-
-      {/* {isModalVisible && <ModalReady onClose={hideModal} />} */}
       <SearchLoginBox>
         <SearchBar>
           <StyledInput placeholder="비트모빅 종이지갑"></StyledInput>

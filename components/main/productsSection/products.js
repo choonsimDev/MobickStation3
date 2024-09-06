@@ -169,19 +169,21 @@ function ProductSection({ title, link, products = [] }) {
       </SectionHeader>
       <ProductsContainer>
         {products.map((product, index) => (
-          <ProductBox key={index}>
-            <ProductImage src={product.imageUrl} alt={product.name} />
-            <ProductContent>
-              <div>
-                <ProductTitle>{product.name}</ProductTitle>
-                <ProductDescription>{product.description}</ProductDescription>
-              </div>
-              <ProductPrice>
-                <PriceNumber>{product.price}</PriceNumber>
-                <PriceUnit> 원</PriceUnit>
-              </ProductPrice>
-            </ProductContent>
-          </ProductBox>
+          <Link key={index} href={`/store/product/${product.id}`}>
+            <ProductBox>
+              <ProductImage src={product.imageUrl} alt={product.name} />
+              <ProductContent>
+                <div>
+                  <ProductTitle>{product.name}</ProductTitle>
+                  <ProductDescription>{product.description}</ProductDescription>
+                </div>
+                <ProductPrice>
+                  <PriceNumber>{product.price}</PriceNumber>
+                  <PriceUnit> 원</PriceUnit>
+                </ProductPrice>
+              </ProductContent>
+            </ProductBox>
+          </Link>
         ))}
       </ProductsContainer>
     </Section>

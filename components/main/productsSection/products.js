@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Link from "next/link";
 // import ModalReady from "@/components/modal/ModalReady";
-import { hamsterProducts } from "@/app/api/getproducts/getproducts";
+import {
+  hamsterProducts,
+  catProducts,
+  dogProducts,
+} from "@/app/api/getproducts/getproducts";
 
 const MainContainer = styled.div`
   width: 1600px;
@@ -57,9 +61,9 @@ const MoreButton = styled.button`
 `;
 
 export const ProductsContainer = styled.div`
-  display: flex;
+  display: grid;
   gap: 20px;
-  grid-template-columns: (5, 1fr);
+  grid-template-columns: repeat(5, 1fr); /* 5개의 열을 만듭니다 */
 
   cursor: pointer;
   :hover {
@@ -70,9 +74,7 @@ export const ProductsContainer = styled.div`
   @media (max-width: 768px) {
     flex-direction: column;
     gap: 10px;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Create two columns */
-    gap: 10px; /* Space between the items */
+    grid-template-columns: repeat(2, 1fr); /* 작은 화면에서는 2개의 열 */
   }
 `;
 
@@ -156,105 +158,6 @@ export const PriceUnit = styled.span`
   color: black;
 `;
 
-const popularProducts = [
-  {
-    imageUrl: "/images/store/wallet_1.png",
-    name: "판매 상품 예시",
-    description: "판매 상품 예시 이미지입니다.",
-    price: "99,000",
-  },
-  {
-    imageUrl: "/images/store/o4fan.png",
-    name: "판매 상품 예시",
-    description: "판매 상품 예시 이미지입니다.",
-    price: "50,000",
-  },
-  {
-    imageUrl: "/images/store/cjman.png",
-    name: "판매 상품 예시",
-    description: "판매 상품 예시 이미지입니다.",
-    price: "39,800",
-  },
-  {
-    imageUrl: "/images/store/jufrieden.png",
-    name: "판매 상품 예시",
-    description: "판매 상품 예시 이미지입니다.",
-    price: "170,000",
-  },
-  {
-    imageUrl: "/images/store/jufrieden.png",
-    name: "판매 상품 예시",
-    description: "판매 상품 예시 이미지입니다.",
-    price: "170,000",
-  },
-];
-
-const walletProducts = [
-  {
-    imageUrl: "/images/store/wallet_1.png",
-    name: "판매 상품 예시",
-    description: "판매 상품 예시 이미지입니다.",
-    price: "99,000",
-  },
-  {
-    imageUrl: "/images/store/o4fan.png",
-    name: "판매 상품 예시",
-    description: "판매 상품 예시 이미지입니다.",
-    price: "50,000",
-  },
-  {
-    imageUrl: "/images/store/cjman.png",
-    name: "판매 상품 예시",
-    description: "판매 상품 예시 이미지입니다.",
-    price: "39,800",
-  },
-  {
-    imageUrl: "/images/store/jufrieden.png",
-    name: "판매 상품 예시",
-    description: "판매 상품 예시 이미지입니다.",
-    price: "170,000",
-  },
-  {
-    imageUrl: "/images/store/jufrieden.png",
-    name: "판매 상품 예시",
-    description: "판매 상품 예시 이미지입니다.",
-    price: "170,000",
-  },
-];
-
-const goodsProducts = [
-  {
-    imageUrl: "/images/store/wallet_1.png",
-    name: "판매 상품 예시",
-    description: "판매 상품 예시 이미지입니다.",
-    price: "99,000",
-  },
-  {
-    imageUrl: "/images/store/o4fan.png",
-    name: "판매 상품 예시",
-    description: "판매 상품 예시 이미지입니다.",
-    price: "50,000",
-  },
-  {
-    imageUrl: "/images/store/cjman.png",
-    name: "판매 상품 예시",
-    description: "판매 상품 예시 이미지입니다.",
-    price: "39,800",
-  },
-  {
-    imageUrl: "/images/store/jufrieden.png",
-    name: "판매 상품 예시",
-    description: "판매 상품 예시 이미지입니다.",
-    price: "170,000",
-  },
-  {
-    imageUrl: "/images/store/jufrieden.png",
-    name: "판매 상품 예시",
-    description: "판매 상품 예시 이미지입니다.",
-    price: "170,000",
-  },
-];
-
 function ProductSection({ title, link, products = [] }) {
   return (
     <Section>
@@ -287,24 +190,20 @@ function ProductSection({ title, link, products = [] }) {
 
 export default async function MainPage() {
   const hamsterData = await hamsterProducts();
+  const catData = await catProducts();
+  const dogData = await dogProducts();
+
   console.log("hamsterData============", hamsterData);
   return (
     <MainContainer>
       <ProductSection
         title="인기상품"
-        link="/popular"
+        link="/store/category"
         products={hamsterData}
       />
-      <ProductSection
-        title="종이지갑 상품"
-        link="/wallet"
-        products={hamsterData}
-      />
-      <ProductSection
-        title="굿즈 상품"
-        link="/goods"
-        products={hamsterData}
-      />
+      <ProductSection title="강아지" link="/dog" products={dogData} />
+      <ProductSection title="햄스터" link="/hamster" products={hamsterData} />
+      <ProductSection title="고양이" link="/cat" products={catData} />
     </MainContainer>
   );
 }

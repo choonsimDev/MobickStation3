@@ -40,3 +40,29 @@ export const hamsterProducts = async (req) => {
   console.log(products);
   return products;
 };
+
+export const catProducts = async (req) => {
+  console.log("GET request received");
+  const products = await prisma.product.findMany({
+    where: {
+      category: {
+        name: "고양이",
+      },
+    },
+  });
+  console.log(products);
+  return products;
+};
+
+export const dogProducts = async (req) => {
+  console.log("GET request received");
+  const products = await prisma.product.findMany({
+    where: {
+      category: {
+        name: "강아지",
+      },
+    },
+  });
+  console.log(products);
+  return products;
+};

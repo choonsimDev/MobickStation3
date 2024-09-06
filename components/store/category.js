@@ -9,7 +9,7 @@ import {
   ProductPrice,
   PriceNumber,
   PriceUnit,
-} from "@/src/components/main/productsSection/products";
+} from "@/components/main/productsSection/products";
 // import ModalReady from "@/components/modal/ModalReady";
 
 const MainContainer = styled.div`

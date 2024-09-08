@@ -5,7 +5,6 @@ import Header from "@/components/common/header";
 import Footer from "@/components/common/footer";
 import styled from "styled-components";
 import React, { useState } from "react";
-import { SessionProvider } from "next-auth/react";
 import LoginModal from "@/components/login/loginModal";
 
 const ProductDetailContainer = styled.div`
@@ -256,7 +255,7 @@ export default function ProductDetail({ product }) {
   const closeLoginModal = () => setShowLoginModal(false);
 
   return (
-    <SessionProvider>
+    <div>
       <Header />
       <ProductDetailContainer>
         <ProductTop>
@@ -326,6 +325,6 @@ export default function ProductDetail({ product }) {
         </ProductBottom>
       </ProductDetailContainer>
       <Footer />
-    </SessionProvider>
+    </div>
   );
 }

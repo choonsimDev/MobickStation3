@@ -1,3 +1,5 @@
+//보류, 현재 사용안함
+
 "use client";
 
 import React, { useEffect } from "react";

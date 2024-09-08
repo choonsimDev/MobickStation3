@@ -31,7 +31,7 @@ model User {
   email     String    @unique
   phone     Int?      @unique
   username  String?
-  password  String
+  password  String?
   createdAt DateTime  @default(now())
   updatedAt DateTime
   deletedAt DateTime?
@@ -68,7 +68,10 @@ model dbNotice {
   views     Int      @default(0)
 }
 
-// productDB
+//---------------------product DB
+//---------------------product DB
+//---------------------product DB
+
 
 model Product {
   id           Int      @id @default(autoincrement())
@@ -103,4 +106,102 @@ model Store {
   description String
   contactInfo String
   products    Product[]
+}
+
+
+//---------------------Customer DB
+//---------------------Customer DB
+//---------------------Customer DB
+
+model Customer {
+  id             Int       @id @default(autoincrement()) 
+  username       String    @unique
+  email          String    @unique
+  phone          String?   @unique
+  password       String?   // Optional for social logins, required for custom signup
+  profileImage   String?
+  mileage        Int       @default(0)
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  accounts       Account[]  // Customer's social accounts (multiple providers)
+  sessions       Session[]  // NextAuth session information
+  addresses      Address[]  // Associated shipping addresses
+  orders         Order[]    // Customer's orders
+  verificationTokens VerificationToken[] // Opposite relation field for the `customer` field in the `VerificationToken` model
+
+  @@index([id, email])  // Index for performance
+}
+
+model Account {
+  id                 Int       @id @default(autoincrement())
+  userId             Int
+  provider           Provider  // Use enum for provider types (e.g., 'kakao', 'google', 'naver')
+  providerAccountId  String    // Unique ID provided by the provider
+  accessToken        String?   // Access token for social login
+  refreshToken       String?   // Refresh token for social login
+  expiresAt          Int?      // Token expiration time
+  
+  customer           Customer  @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, provider])
+}
+
+enum Provider {
+  KAKAO
+  GOOGLE
+  NAVER
+  CUSTOM  // For custom email/password-based login
+}
+
+model Session {
+  id           Int       @id @default(autoincrement())
+  sessionToken String    @unique
+  userId       Int
+  expires      DateTime
+
+  customer     Customer  @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model Address {
+  id         Int      @id @default(autoincrement())
+  userId     Int
+  receiver   String
+  phone      String
+  postalCode String
+  address    String
+  detail     String?
+  isDefault  Boolean  @default(false)
+
+  customer   Customer @relation(fields: [userId], references: [id], onDelete: Cascade)
+  orders     Order[]  // Orders associated with this address
+
+  @@index([userId, postalCode])
+}
+
+model Order {
+  id            Int       @id @default(autoincrement())
+  userId        Int
+  addressId     Int @map("address_id") // Remove @index attribute
+  totalAmount   String
+  status        String
+  createdAt     DateTime  @default(now())
+
+  customer      Customer  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  address       Address   @relation(fields: [addressId], references: [id], onDelete: Cascade)
+
+  @@index([userId, addressId])
+}
+
+model VerificationToken {
+  id       Int      @id @default(autoincrement())
+  token    String   @unique  // Token for email verification
+  userId   Int
+  expires  DateTime
+
+  customer Customer @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
 }

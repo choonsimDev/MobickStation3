@@ -1,4 +1,4 @@
-// components/Profile.js
+// components/Profile.js : 로그인 상태에 따라 다른 화면을 보여주는 컴포넌트
 "use client";
 
 import { signOut, useSession } from "next-auth/react";

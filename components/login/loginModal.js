@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
+// import axios from "axios";
 
 const ModalWrapper = styled.div`
   background: rgba(0, 0, 0, 0.2);
@@ -139,7 +140,33 @@ const CloseButton = styled.button`
   }
 `;
 
+// 카카오 SDK 스크립트 로드
+const loadKakaoSDK = () => {
+  if (!window.Kakao) {
+    const script = document.createElement("script");
+    script.src = "https://developers.kakao.com/sdk/js/kakao.js";
+    script.async = true;
+    script.onload = () => {
+      if (window.Kakao) {
+        window.Kakao.init("YOUR_KAKAO_API_KEY"); // REST API 키
+      }
+    };
+    document.body.appendChild(script);
+  }
+};
+
+const kakaoLogin = () => {
+  if (!window.Kakao) return;
+
+  window.Kakao.Auth.authorize({
+    redirectUri: "http://localhost:3000/api/auth/kakao/callback", // 실제 배포 시에 도메인 변경
+  });
+};
+
 export default function LoginModal({ onClose }) {
+  useEffect(() => {
+    loadKakaoSDK(); // 카카오 SDK 로드
+  }, []);
   return (
     <ModalWrapper>
       <ModalContent>
@@ -165,7 +192,9 @@ export default function LoginModal({ onClose }) {
         <Divider>--------간편 로그인--------</Divider>
         <SocialLoginWrapper>
           <SocialLoginButton naver>네이버 로그인</SocialLoginButton>
-          <SocialLoginButton kakao>카카오 로그인</SocialLoginButton>
+          <SocialLoginButton kakao onClick={kakaoLogin}>
+            카카오 로그인
+          </SocialLoginButton>
           <SocialLoginButton google>구글 로그인</SocialLoginButton>
         </SocialLoginWrapper>
         <CloseButton onClick={onClose}>닫기</CloseButton>

@@ -306,10 +306,10 @@ export default function ProductDetail({ product }) {
               </PriceBox>
               <SelectBox>
                 <CartButton onClick={openLoginModal}>장바구니 담기</CartButton>
-                {showLoginModal && <LoginModal onClose={closeLoginModal} />}
                 <BuyButton>바로 구매</BuyButton>
               </SelectBox>
             </OrderBox>
+            {showLoginModal && <LoginModal onClose={closeLoginModal} />}
 
             <p>재고: {product.stock} 개</p>
           </ProductInfoWrapper>

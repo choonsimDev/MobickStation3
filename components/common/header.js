@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import React, { useState } from "react";
 import AuthButtons from "../auth/authButton";
+import LoginButton from "../login/loginButton";
+import Profile from "../login/profile";
 import Link from "next/link";
 
 // import ModalReady from "../modal/ModalReady";
@@ -192,6 +194,8 @@ export default function LogoAndSearch() {
         />
 
         <AuthButtons />
+        <LoginButton />
+        <Profile />
       </SearchLoginBox>
     </StyledHeader>
   );
